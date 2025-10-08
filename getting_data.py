@@ -1,14 +1,27 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 import os
 import csv
 
+
+html = """
+<html>
+<head>
+<!-- Head comment -->
+<title>Test Page</title>
+</head>
+<body>
+<p>Hello World</p>
+<!-- Body comment -->
+</body>
+</html>
+"""
 
 response=requests.get("https://www.flipkart.com/")
 responsedata=response.content
 
 if response.status_code==200:
-    soup=BeautifulSoup(responsedata,"html.parser")
+    soup=BeautifulSoup(html,"html.parser")
     
     
     data=soup.prettify()
@@ -50,5 +63,11 @@ if response.status_code==200:
 
     #Beautiful Soup
     
-    print(soup.h1.string)
+    """ print(soup.h1.string) """
     # use methods like find , find_all etc 
+
+
+    #comments
+    comments=soup.find_all(string=lambda text: isinstance(text,Comment))
+    for c in comments:
+        print(c)
