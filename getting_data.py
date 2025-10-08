@@ -22,15 +22,15 @@ if response.status_code==200:
     
     # Navigating to a string
     navstr=soup.find_all('link')
-    for link in navstr:
-        data=link.get("href")
-        print(count,data)
-        
-        pre_save_data=(count,data)
-        save_data=str(pre_save_data)
-        with open("data.txt", 'a', newline='') as file:
-            file.write(save_data)
-        count+=1   
+    with open("data.txt", 'a', newline='') as file:
+        for link in navstr:
+            data=link.get("href")
+            print(count,data)
+            pre_save_data=(count,data)
+            save_data=str(pre_save_data)
+            file.write(f"{save_data} \n")
+            count+=1   
+
 
 
 
