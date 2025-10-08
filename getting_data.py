@@ -31,11 +31,24 @@ if response.status_code==200:
             save_data=str(pre_save_data)
             file.write(f"{save_data} \n")
             count+=1   """ 
-    tags=soup.find_all('link')
+    
+
+
+
+    """ tags=soup.find_all('link')
     with open("data.csv" , 'w',newline='',encoding='utf-8') as csvfile:
         writer=csv.writer(csvfile)
         writer.writerow(["S.No","Link"])
         for i , link in enumerate(tags,start=1):
             href=link.get("href")
             if href:
-                writer.writerow([i,href])
+                writer.writerow([i,href]) """
+
+
+
+
+
+    #Beautiful Soup
+    
+    print(soup.h1.string)
+    # use methods like find , find_all etc 
